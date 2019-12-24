@@ -1,5 +1,5 @@
 pkgname=peco
-pkgver=0.5.3
+pkgver=0.5.4
 pkgrel=1
 pkgdesc='Simplistic interactive filtering tool'
 arch=('x86_64')
@@ -8,22 +8,17 @@ license=('MIT')
 #source=("https://github.com/peco/$pkgname/releases/download/v$pkgver/peco_linux_amd64.tar.gz")
 source=("https://github.com/peco/$pkgname/archive/v$pkgver.tar.gz")
 makedepends=('go')
-sha256sums=('ac7d12a1f960ef04afea0c54c5ee754301fb4d85b0e65746826b142de13c843a')
-
-prepare() {
-	[[ -e "$srcdir/src" ]] && rm -rf "$srcdir/src"
-	mkdir -p "$srcdir/src/github.com/peco"
-	mv "$srcdir/$pkgname-$pkgver" "$srcdir/src/github.com/peco/$pkgname"
-}
+sha256sums=('06636082070634256b5adc4c24955ad2c520b24fec528131d0ce203c31aa209d')
 
 build() {
-	[[ ! -e "$srcdir/build" ]] && mkdir "$srcdir/build"
-	cd "$srcdir/src/github.com/peco/$pkgname"
-	export GOPATH="$srcdir"
-	make installdeps
-	go build -o "$srcdir/build/$pkgname" "cmd/$pkgname/$pkgname.go"
+	cd "${srcdir}/${pkgname}-${pkgver}"
+	GOFLAGS=-mod=vendor
+	go mod vendor
+	make build
 }
 
 package() {
-	install -Dm 755 "$srcdir/build/$pkgname" "$pkgdir/usr/local/bin/$pkgname"
+	install -Dm 755 \
+	        "${srcdir}/${pkgname}-${pkgver}/releases/${pkgname}_linux_amd64/${pkgname}" \
+	        "$pkgdir/usr/local/bin/$pkgname"
 }
