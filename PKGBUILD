@@ -1,5 +1,5 @@
 pkgname=peco
-pkgver=0.5.5
+pkgver=0.5.7
 pkgrel=1
 pkgdesc='Simplistic interactive filtering tool'
 arch=('x86_64')
@@ -8,7 +8,7 @@ license=('MIT')
 #source=("https://github.com/peco/$pkgname/releases/download/v$pkgver/peco_linux_amd64.tar.gz")
 source=("https://github.com/peco/$pkgname/archive/v$pkgver.tar.gz")
 makedepends=('go')
-sha256sums=('ce4191cb16d924c81cce1ebd0340d98739794745d19565ba8a84ef1e12e1960c')
+sha256sums=('9bf4f10b3587270834380e1ea939625bd47eaa166bfabd050e66fad3ffd8f9b0')
 
 build() {
 	cd "${srcdir}/${pkgname}-${pkgver}"
