@@ -1,5 +1,5 @@
 pkgname=peco
-pkgver=0.5.8
+pkgver=0.5.10
 pkgrel=1
 pkgdesc='Simplistic interactive filtering tool'
 arch=('x86_64')
@@ -22,3 +22,4 @@ package() {
 	        "${srcdir}/${pkgname}-${pkgver}/releases/${pkgname}_linux_amd64/${pkgname}" \
 	        "$pkgdir/usr/local/bin/$pkgname"
 }
+sha256sums=('781c2effc4f6a58d9ff96fb0fc8b0fba3aab56a91a34933d68c5de3aea5fe3f6')
